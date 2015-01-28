@@ -1,0 +1,17 @@
+{
+	"gameData": {
+		"ballStartPos":	{
+			"x":400,
+			"y": 240
+		},
+		"paddle":{
+			"maxSpeed" : 3,
+			"bouncingForce" : 1.0
+		},
+		"ball": {
+			"initialSpeed": 3,
+			"speedIncrement": 0.2,
+			"forceDecrement": 0.97
+		}
+	}
+}
