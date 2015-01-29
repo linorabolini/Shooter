@@ -17,7 +17,7 @@ package
 	import com.core.global.settings;
 	
 	
-	[SWF(width='800', height='480', backgroundColor='0x00CCCC', frameRate='32')]
+	[SWF(width='800', height='480', backgroundColor='0xCCCCCC', frameRate='32')]
 	
 	/**
 	 * Game main class 

@@ -1,7 +1,6 @@
 package screens 
 {
-	import assets.BallMC;
-	import assets.LevelScreen;
+	import assets.MainFrame;
 	
 	import com.core.Controller;
 	import com.core.GameObject;
@@ -24,7 +23,7 @@ package screens
 	 */
 	public class GameScreen extends Screen 
 	{
-		private var _view:LevelScreen;
+		private var _view:MainFrame;
 		private var controller:Controller;
 		private var gameObjects:Array;
 
@@ -48,6 +47,8 @@ package screens
 		override public function enter(data:*):void {			
 			// audio loop
 			audio.loop("music");
+			
+			stage.focus = this;
 			
 			// configure the game
 			setupGame(settings.gameData); 
@@ -136,7 +137,7 @@ package screens
 					if(!go2.isActive)
 						continue;
 					
-					if(go1.hitTestObject(go2))
+					if(go2.hitTestPoint(go1.x, go1.y))
 					{
 						go1.deactivate();
 						go2.deactivate();
