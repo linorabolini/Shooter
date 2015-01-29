@@ -6,7 +6,7 @@ package
 	
 	import flexunit.flexui.FlexUnitTestRunnerUIAS;
 	
-	import tests.CharacterTest;
+	import tests.CoreTests;
 	
 	public class FlexUnitApplication extends Sprite
 	{
@@ -26,7 +26,7 @@ package
 		public function currentRunTestSuite():Array
 		{
 			var testsToRun:Array = new Array();
-			testsToRun.push(tests.CharacterTest);
+			testsToRun.push(tests.CoreTests);
 			return testsToRun;
 		}
 	}

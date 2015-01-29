@@ -1,14 +1,39 @@
 package com.core.components
 {
 	import flash.display.Bitmap;
+	import com.core.global.AssetManager;
 	import com.core.GameObject;
 
 	public class ImageComponent extends Bitmap implements Component
 	{
-		public function ImageComponent(resourceUrl:String)
+		public function ImageComponent(resourceId:String)
 		{
-			// TODO load resource here
+			if(resourceId)
+				withResource(resourceId);
+			
 			super();
+		}
+		
+		private function withResource(id:String):ImageComponent
+		{
+			this.bitmapData = AssetManager.instance.getResource(id).bitmapData;
+			return this
+		}
+		
+		public function center():ImageComponent
+		{
+			this.x = -this.width/2;
+			this.y = -this.height/2;
+			
+			return this
+		}
+		
+		public function activate(g:GameObject):void
+		{
+		}
+		
+		public function deactivate(g:GameObject):void
+		{
 		}
 		
 		public function setup(go:GameObject):void

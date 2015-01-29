@@ -1,15 +1,17 @@
 package tests
 {
+	import com.core.Controller;
+	import com.core.GameObject;
+	import com.core.components.ImageComponent;
+	import com.core.components.InventoryComponent;
+	import com.core.components.PlayerInputComponent;
+	import com.core.items.Weapon;
+	
 	import flash.ui.Keyboard;
 	
 	import flexunit.framework.*;
-	
-	import com.core.GameObject;
-	import com.core.components.ImageComponent;
-	import com.core.components.PlayerInputComponent;
-	import com.core.Controller;
 
-	public class CharacterTest
+	public class CoreTests
 	{		
 		[Test( description = "How a GameObject would be created" )]
 		public function gameObjectCreationTest():void
@@ -23,7 +25,7 @@ package tests
 		[Test( description = "The Image component test" )]
 		public function gameObjectShouldAllowImageComponents():void
 		{
-			var view:ImageComponent = new ImageComponent("exampleImage");
+			var view:ImageComponent = new ImageComponent("bullet");
 			var go:GameObject = new GameObject([view]);
 			
 			Assert.assertEquals(go.components.length, 1);
@@ -56,7 +58,8 @@ package tests
 		public function gameObjectShouldAllowPlayerInputController():void
 		{
 			var controller:Controller = new Controller();
-			var input:PlayerInputComponent = new PlayerInputComponent(controller);
+			var inventory:InventoryComponent = new InventoryComponent();
+			var input:PlayerInputComponent = new PlayerInputComponent(controller, inventory);
 			var go:GameObject = new GameObject([input]);
 			
 			Assert.assertEquals(go.components.length, 1);
@@ -69,7 +72,7 @@ package tests
 			controller.set('W', Controller.FALSE);
 			
 			Assert.assertEquals(go.x, -1);
-			Assert.assertEquals(go.y, 1);
+			Assert.assertEquals(go.y, -1);
 			
 			controller.set('S', Controller.TRUE);
 			controller.set('D', Controller.TRUE);
@@ -77,6 +80,41 @@ package tests
 			
 			Assert.assertEquals(go.x, 0);
 			Assert.assertEquals(go.y, 0);
+		}
+		
+		[Test( description = "Test for the Inventory component" )]
+		public function gameObjectShouldBeAllowedToHaveAnInventory():void
+		{
+			var inventory:InventoryComponent = new InventoryComponent();
+			Assert.assertNotNull(inventory.selectedItem);
+			
+			var weapon:Weapon = new Weapon();
+			inventory.addItem(weapon);
+
+			Assert.assertEquals(inventory.selectedItem, weapon);
+		}
+		
+		[Test( description = "Weapons test" )]
+		public function weaponsShouldBeAbleToFire():void
+		{
+			var character:GameObject = new GameObject();
+			var bullet:GameObject = new GameObject();
+			bullet.deactivate();
+			
+			character.x = 100;
+			character.y = 150;
+			
+			var weapon:Weapon = new Weapon([bullet]);
+			
+			Assert.assertFalse(bullet.isActive);
+			
+			weapon.doUse(character);
+			
+			Assert.assertTrue(bullet.isActive);
+			Assert.assertTrue(bullet.x == character.x);
+			Assert.assertTrue(bullet.y == character.y);
+			Assert.assertTrue(bullet.rotation == character.rotation);
+			
 		}
 	}
 }

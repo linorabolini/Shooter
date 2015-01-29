@@ -6,10 +6,10 @@
 package
 {
 	import flash.display.Sprite;
-	import tests.CharacterTest;
+	import tests.CoreTests;
 	
 	public class FlexUnitCompilerApplication extends Sprite
 	{
-		private var tests_CharacterTest_obj:tests.CharacterTest;
+		private var tests_CharacterTest_obj:tests.CoreTests;
 	}
 }

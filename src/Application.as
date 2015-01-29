@@ -48,7 +48,7 @@ package
 			stage.stageFocusRect = false;
 			
 			loadAudio();
-			settings.onLoad(onSettingsLoaded).loadFile("resources/settings.json");
+			settings.onLoad(onSettingsLoaded).loadFile("../resources/settings.json");
 		}
 		
 		/**
@@ -56,11 +56,11 @@ package
 		 * 
 		 */		
 		private function loadAudio():void  {
-			audio.registerFx("hit","sfx/hit.mp3")
+			audio.registerFx("shoot","sfx/hit.mp3")
 				 .registerFx("menu","sfx/MenuMusic.mp3")
 				 .registerFx("success","sfx/success.mp3")
-				 .registerFx("paddle_hit_0","sfx/uhh.mp3")
-				 .registerFx("paddle_hit_1","sfx/ow.mp3")
+				 .registerFx("zombie_hit_0","sfx/uhh.mp3")
+				 .registerFx("zombie_hit_1","sfx/ow.mp3")
 				 .registerFx("success","sfx/success.mp3")
 				 .registerFx("music","sfx/Gym.mp3");
 		}

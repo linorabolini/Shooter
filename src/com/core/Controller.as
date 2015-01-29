@@ -5,7 +5,13 @@ package com.core
 	{
 		public static const TRUE:Number = 1;
 		public static const FALSE:Number = 0;
+		public static const MOUSE_X:String = 'MouseX';
+		public static const MOUSE_Y:String = 'MouseY';
+		public static const MOUSE_LEFT:String = 'MouseL';
+		public static const MOUSE_RIGHT:String = 'MouseR';
+		
 		private var status:Object;
+		
 		
 		public function Controller(initialStatus:Object=null)
 		{
